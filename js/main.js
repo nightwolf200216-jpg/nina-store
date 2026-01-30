@@ -1,3 +1,4 @@
+const API_BASE = 'https://tiderode-gwyn-blockish.ngrok-free.dev';
 // ===================================
 // Global State Management
 // ===================================
@@ -201,11 +202,18 @@ function removeOverlay() {
 // ===================================
 async function loadProducts() {
     try {
-        const response = await fetch('https://seu-backend/api/public/produtos')
+        const response = await fetch(`${API_BASE}/api/public/produtos`);
         const data = await response.json();
         
         if (data && data.data) {
-            state.products = data.data;
+            state.products = data.data.map(p => ({
+                ...p,
+                featured: Boolean(p.featured), // normaliza
+                features: typeof p.features === 'string'
+                    ? JSON.parse(p.features)
+                    : p.features
+            }));
+
             renderFeaturedProducts();
             renderAllProducts();
         }
@@ -316,7 +324,7 @@ function getCategoryName(category) {
 // Product Detail
 // ===================================
 function renderProductDetail(productId) {
-    const product = state.products.find(p => p.id === productId);
+    const product = state.products.find(p => String(p.id) === String(productId));
     const container = document.getElementById('productDetail');
     
     if (!product) {
@@ -442,7 +450,7 @@ function formatDate(dateString) {
 // Cart Management
 // ===================================
 function addToCart(productId) {
-    const product = state.products.find(p => p.id === productId);
+    const product = state.products.find(p => String(p.id) === String(productId));
     
     if (!product) return;
     
