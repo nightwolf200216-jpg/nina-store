@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Loja da Nina - Itens fofinhos e kawaii para você!">
+    <title>Nina's Store 🐱 - Loja de Itens Fofinhos</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Fredoka:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-cat"></i>
+                    <span>Nina's Store</span>
+                </div>
+                
+                <nav class="nav-desktop">
+                    <a href="#home" class="nav-link active" data-page="home">
+                        <i class="fas fa-home"></i> Início
+                    </a>
+                    <a href="#produtos" class="nav-link" data-page="produtos">
+                        <i class="fas fa-store"></i> Produtos
+                    </a>
+                    <a href="#sobre" class="nav-link" data-page="sobre">
+                        <i class="fas fa-heart"></i> Sobre
+                    </a>
+                    <a href="#blog" class="nav-link" data-page="blog">
+                        <i class="fas fa-blog"></i> Blog
+                    </a>
+                    <a href="#contato" class="nav-link" data-page="contato">
+                        <i class="fas fa-envelope"></i> Contato
+                    </a>
+                </nav>
+                
+                <div class="header-actions">
+                    <button class="cart-btn" id="cartBtn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </button>
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <i class="fas fa-cat"></i>
+                <span>Menu</span>
+            </div>
+            <button class="close-menu" id="closeMenu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <nav class="mobile-nav">
+            <a href="#home" class="mobile-nav-link" data-page="home">
+                <i class="fas fa-home"></i> Início
+            </a>
+            <a href="#produtos" class="mobile-nav-link" data-page="produtos">
+                <i class="fas fa-store"></i> Produtos
+            </a>
+            <a href="#sobre" class="mobile-nav-link" data-page="sobre">
+                <i class="fas fa-heart"></i> Sobre
+            </a>
+            <a href="#blog" class="mobile-nav-link" data-page="blog">
+                <i class="fas fa-blog"></i> Blog
+            </a>
+            <a href="#contato" class="mobile-nav-link" data-page="contato">
+                <i class="fas fa-envelope"></i> Contato
+            </a>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <!-- Home Page -->
+        <div class="page active" id="page-home">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="container">
+                    <div class="hero-content">
+                        <div class="hero-text">
+                            <h1 class="hero-title">Bem-vindo à Loja da Nina! 🐱✨</h1>
+                            <p class="hero-subtitle">Os itens mais fofinhos e kawaii você encontra aqui!</p>
+                            <div class="hero-buttons">
+                                <button class="btn btn-primary" onclick="navigateTo('produtos')">
+                                    <i class="fas fa-shopping-bag"></i> Ver Produtos
+                                </button>
+                                <button class="btn btn-secondary" onclick="navigateTo('sobre')">
+                                    <i class="fas fa-heart"></i> Conheça a Nina
+                                </button>
+                            </div>
+                        </div>
+                        <div class="hero-image">
+                            <div class="nina-illustration">
+                                <i class="fas fa-cat"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Featured Products -->
+            <section class="featured-products">
+                <div class="container">
+                    <h2 class="section-title">
+                        <i class="fas fa-star"></i> Produtos em Destaque
+                    </h2>
+                    <div class="products-grid" id="featuredProducts">
+                        <!-- Products will be loaded here -->
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-primary" onclick="navigateTo('produtos')">
+                            Ver Todos os Produtos <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Preview -->
+            <section class="about-preview">
+                <div class="container">
+                    <div class="about-preview-content">
+                        <div class="about-preview-image">
+                            <div class="nina-avatar">
+                                <i class="fas fa-cat"></i>
+                            </div>
+                        </div>
+                        <div class="about-preview-text">
+                            <h2>Conheça a Nina 💕</h2>
+                            <p>Olá! Eu sou a Nina, uma gatinha furry apaixonada por tudo que é fofinho e kawaii! Criei esta loja para compartilhar com você os itens mais adoráveis que encontro.</p>
+                            <button class="btn btn-secondary" onclick="navigateTo('sobre')">
+                                Saiba Mais <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Produtos Page -->
+        <div class="page" id="page-produtos">
+            <div class="container">
+                <div class="page-header">
+                    <h1 class="page-title">
+                        <i class="fas fa-store"></i> Nossa Loja
+                    </h1>
+                    <p class="page-subtitle">Explore todos os nossos produtos fofinhos!</p>
+                </div>
+
+                <!-- Filters -->
+                <div class="filters">
+                    <div class="filter-group">
+                        <label for="categoryFilter">Categoria:</label>
+                        <select id="categoryFilter" class="filter-select">
+                            <option value="all">Todas</option>
+                            <option value="pelucias">Pelúcias</option>
+                            <option value="acessorios">Acessórios</option>
+                            <option value="casa">Casa & Decoração</option>
+                            <option value="moda">Moda</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="sortFilter">Ordenar:</label>
+                        <select id="sortFilter" class="filter-select">
+                            <option value="default">Padrão</option>
+                            <option value="price-asc">Menor Preço</option>
+                            <option value="price-desc">Maior Preço</option>
+                            <option value="name">Nome A-Z</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="products-grid" id="allProducts">
+                    <!-- Products will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Detail Page -->
+        <div class="page" id="page-produto">
+            <div class="container">
+                <button class="btn btn-back" onclick="navigateTo('produtos')">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </button>
+                <div class="product-detail" id="productDetail">
+                    <!-- Product detail will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Sobre Page -->
+        <div class="page" id="page-sobre">
+            <div class="container">
+                <div class="page-header">
+                    <h1 class="page-title">
+                        <i class="fas fa-heart"></i> Sobre a Nina
+                    </h1>
+                </div>
+
+                <div class="about-content">
+                    <div class="about-card">
+                        <div class="about-card-image">
+                            <div class="nina-avatar-large">
+                                <i class="fas fa-cat"></i>
+                            </div>
+                        </div>
+                        <div class="about-card-content">
+                            <h2>Olá! Eu sou a Nina! 🐱💕</h2>
+                            <p>Sou uma gatinha furry completamente apaixonada pelo universo kawaii e tudo que é fofinho! Desde pequena, sempre fui encantada por pelúcias, cores pastéis e designs adoráveis.</p>
+                            
+                            <h3>Minha História</h3>
+                            <p>A Nina's Store nasceu do meu sonho de compartilhar essa paixão com outras pessoas que também amam o universo fofo e kawaii. Cada produto da loja é cuidadosamente selecionado por mim, pensando em trazer alegria e fofura para o seu dia a dia!</p>
+                            
+                            <h3>Por que escolher a Nina's Store?</h3>
+                            <ul class="about-list">
+                                <li><i class="fas fa-check-circle"></i> Produtos super fofinhos e de qualidade</li>
+                                <li><i class="fas fa-check-circle"></i> Seleção exclusiva feita com carinho</li>
+                                <li><i class="fas fa-check-circle"></i> Atendimento personalizado e amoroso</li>
+                                <li><i class="fas fa-check-circle"></i> Comunidade apaixonada por kawaii</li>
+                                <li><i class="fas fa-check-circle"></i> Novidades sempre chegando!</li>
+                            </ul>
+
+                            <h3>Minha Missão</h3>
+                            <p>Espalhar fofura, alegria e positividade através de produtos adoráveis que fazem seu coração derreter! Quero que cada cliente se sinta especial e encontre aquele item perfeito que vai trazer um sorriso ao seu rosto. 💖</p>
+                            
+                            <div class="social-links">
+                                <h3>Me siga nas redes sociais!</h3>
+                                <div class="social-buttons">
+                                    <a href="#" class="social-btn instagram">
+                                        <i class="fab fa-instagram"></i> Instagram
+                                    </a>
+                                    <a href="#" class="social-btn twitter">
+                                        <i class="fab fa-twitter"></i> Twitter
+                                    </a>
+                                    <a href="#" class="social-btn tiktok">
+                                        <i class="fab fa-tiktok"></i> TikTok
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Blog Page -->
+        <div class="page" id="page-blog">
+            <div class="container">
+                <div class="page-header">
+                    <h1 class="page-title">
+                        <i class="fas fa-blog"></i> Blog da Nina
+                    </h1>
+                    <p class="page-subtitle">Dicas, novidades e tudo sobre cultura kawaii!</p>
+                </div>
+
+                <div class="blog-grid" id="blogPosts">
+                    <!-- Blog posts will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Blog Post Detail -->
+        <div class="page" id="page-post">
+            <div class="container">
+                <button class="btn btn-back" onclick="navigateTo('blog')">
+                    <i class="fas fa-arrow-left"></i> Voltar ao Blog
+                </button>
+                <div class="post-detail" id="postDetail">
+                    <!-- Post detail will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Contato Page -->
+        <div class="page" id="page-contato">
+            <div class="container">
+                <div class="page-header">
+                    <h1 class="page-title">
+                        <i class="fas fa-envelope"></i> Entre em Contato
+                    </h1>
+                    <p class="page-subtitle">Adoraria ouvir você! 💌</p>
+                </div>
+
+                <div class="contact-content">
+                    <div class="contact-form-wrapper">
+                        <form class="contact-form" id="contactForm">
+                            <div class="form-group">
+                                <label for="name">
+                                    <i class="fas fa-user"></i> Nome
+                                </label>
+                                <input type="text" id="name" name="name" required placeholder="Seu nome">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">
+                                    <i class="fas fa-envelope"></i> E-mail
+                                </label>
+                                <input type="email" id="email" name="email" required placeholder="seu@email.com">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="subject">
+                                    <i class="fas fa-tag"></i> Assunto
+                                </label>
+                                <select id="subject" name="subject" required>
+                                    <option value="">Selecione um assunto</option>
+                                    <option value="duvida">Dúvida sobre produtos</option>
+                                    <option value="pedido">Acompanhar pedido</option>
+                                    <option value="sugestao">Sugestão</option>
+                                    <option value="elogio">Elogio</option>
+                                    <option value="outro">Outro</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">
+                                    <i class="fas fa-comment"></i> Mensagem
+                                </label>
+                                <textarea id="message" name="message" required placeholder="Escreva sua mensagem aqui..." rows="6"></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block">
+                                <i class="fas fa-paper-plane"></i> Enviar Mensagem
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="contact-info">
+                        <div class="contact-card">
+                            <i class="fas fa-clock"></i>
+                            <h3>Horário de Atendimento</h3>
+                            <p>Segunda a Sexta: 9h às 18h</p>
+                            <p>Sábado: 9h às 14h</p>
+                        </div>
+
+                        <div class="contact-card">
+                            <i class="fas fa-envelope"></i>
+                            <h3>E-mail</h3>
+                            <p>contato@ninastore.com</p>
+                        </div>
+
+                        <div class="contact-card">
+                            <i class="fab fa-whatsapp"></i>
+                            <h3>WhatsApp</h3>
+                            <p>(11) 99999-9999</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cart Page -->
+        <div class="page" id="page-carrinho">
+            <div class="container">
+                <div class="page-header">
+                    <h1 class="page-title">
+                        <i class="fas fa-shopping-cart"></i> Meu Carrinho
+                    </h1>
+                </div>
+
+                <div class="cart-content" id="cartContent">
+                    <!-- Cart items will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-cat"></i> Nina's Store</h3>
+                    <p>Os itens mais fofinhos e kawaii para você! 💕</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Links Rápidos</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home" onclick="navigateTo('home')">Início</a></li>
+                        <li><a href="#produtos" onclick="navigateTo('produtos')">Produtos</a></li>
+                        <li><a href="#sobre" onclick="navigateTo('sobre')">Sobre</a></li>
+                        <li><a href="#blog" onclick="navigateTo('blog')">Blog</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Atendimento</h4>
+                    <ul class="footer-links">
+                        <li><a href="#contato" onclick="navigateTo('contato')">Contato</a></li>
+                        <li><a href="#">Política de Privacidade</a></li>
+                        <li><a href="#">Termos de Uso</a></li>
+                        <li><a href="#">Perguntas Frequentes</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Receba novidades e promoções!</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Seu e-mail" required>
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Nina's Store. Feito com 💕 por Nina</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/5511999999999" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage"></span>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>

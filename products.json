@@ -1,0 +1,66 @@
+{
+  "data": [
+    {
+      "id": "prod_010",
+      "name": "Conjunto Laços e Presilhas Kawaii",
+      "description": "Kit com 12 laços e presilhas coloridas",
+      "price": 64.9,
+      "category": "acessorios",
+      "icon": "fas fa-bow-tie",
+      "featured": false,
+      "features": [
+        "12 peças",
+        "Tons pastel"
+      ]
+    },
+    {
+      "id": "prod_009",
+      "name": "Pelúcia Coelho Gigante",
+      "description": "Pelúcia enorme de coelho fofinho",
+      "price": 249.9,
+      "category": "pelucias",
+      "icon": "fas fa-rabbit",
+      "featured": false,
+      "features": [
+        "80cm",
+        "Material antialérgico"
+      ]
+    },
+    {
+      "id": "prod_005",
+      "name": "Chaveiro Unicórnio Mágico",
+      "description": "Chaveiro de pelúcia mini",
+      "price": 28.9,
+      "category": "acessorios",
+      "icon": "fas fa-horse",
+      "featured": false
+    },
+    {
+      "id": "prod_002",
+      "name": "Orelhinhas de Gato com Laço",
+      "description": "Tiara com orelhinhas macias",
+      "price": 45.9,
+      "category": "acessorios",
+      "icon": "fas fa-hat-wizard",
+      "featured": true
+    },
+    {
+      "id": "prod_001",
+      "name": "Pelúcia Gatinha Kawaii",
+      "description": "Pelúcia com olhinhos brilhantes",
+      "price": 89.9,
+      "category": "pelucias",
+      "icon": "fas fa-cat",
+      "featured": true
+    },
+    {
+      "id": "prod_003",
+      "name": "Caneca Fofa com Orelhas",
+      "description": "Caneca de cerâmica 3D",
+      "price": 52.9,
+      "category": "casa",
+      "icon": "fas fa-mug-hot",
+      "featured": true
+    }
+  ]
+}
