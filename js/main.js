@@ -44,57 +44,35 @@ async function initializeApp() {
 // Event Listeners Setup
 // ===================================
 function setupEventListeners() {
-    // Mobile menu
-    const menuToggle = document.getElementById('menuToggle');
-    const closeMenu = document.getElementById('closeMenu');
-    const mobileMenu = document.getElementById('mobileMenu');
-    
-    menuToggle.addEventListener('click', () => {
-        mobileMenu.classList.add('active');
-        createOverlay();
-    });
-    
-    closeMenu.addEventListener('click', () => {
-        closeMobileMenu();
-    });
-    
-    // Navigation links
-    const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
-    navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const page = link.dataset.page;
-            navigateTo(page);
-            closeMobileMenu();
-        });
-    });
-    
-    // Cart button
-    const cartBtn = document.getElementById('cartBtn');
-    cartBtn.addEventListener('click', () => {
-        navigateTo('carrinho');
-    });
-    
-    // Contact form
+    // ... outros ouvintes (menu, cart, etc) ...
+
+    // Contact form (Já deve estar lá)
     const contactForm = document.getElementById('contactForm');
-    contactForm.addEventListener('submit', handleContactSubmit);
-    
-    // Filters
-    const categoryFilter = document.getElementById('categoryFilter');
-    const sortFilter = document.getElementById('sortFilter');
-    
-    categoryFilter.addEventListener('change', (e) => {
-        state.filters.category = e.target.value;
-        renderAllProducts();
-    });
-    
-    sortFilter.addEventListener('change', (e) => {
-        state.filters.sort = e.target.value;
-        renderAllProducts();
-    });
-    
-    // Handle browser back/forward
-    window.addEventListener('popstate', handleRoute);
+    if(contactForm) contactForm.addEventListener('submit', handleContactSubmit);
+
+    // ADICIONE ISTO PARA A NEWSLETTER:
+    const newsletterForm = document.querySelector('.newsletter-form');
+    if(newsletterForm) {
+        newsletterForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const emailInput = newsletterForm.querySelector('input');
+            const btn = newsletterForm.querySelector('button');
+            
+            btn.disabled = true;
+            
+            const response = await fetch("https://formspree.io/f/xpqrjdge", {
+                method: "POST",
+                body: new FormData(newsletterForm),
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (response.ok) {
+                showToast('Inscrito com sucesso! 🦄');
+                newsletterForm.reset();
+            }
+            btn.disabled = false;
+        });
+    }
 }
 
 // ===================================
@@ -624,24 +602,24 @@ function loadCartFromStorage() {
     }
 }
 
-// ===================================
-// Contact Form
+/// ===================================
+// Contact Form (Conectado ao Formspree)
 // ===================================
 async function handleContactSubmit(e) {
-    e.preventDefault();
+    e.preventDefault(); // Impede a página de recarregar
     
     const form = e.target;
     const submitBtn = form.querySelector('button[type="submit"]');
     const originalText = submitBtn.innerHTML;
     
-    // 1. Muda botão para indicar carregamento
+    // Indica ao usuário que está enviando
     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
     submitBtn.disabled = true;
 
     const formData = new FormData(form);
     
     try {
-        // 2. Envia para o Formspree (SUBSTITUA O LINK ABAIXO PELO SEU)
+        // Envio real para o Formspree
         const response = await fetch("https://formspree.io/f/xpqrjdge", {
             method: "POST",
             body: formData,
@@ -651,15 +629,16 @@ async function handleContactSubmit(e) {
         });
 
         if (response.ok) {
+            // Se o Formspree aceitou, mostra o seu Toast fofinho
             showToast('Mensagem enviada! Logo entraremos em contato. 💌');
-            form.reset();
+            form.reset(); // Limpa o formulário
         } else {
-            showToast('Ops! Houve um erro ao enviar. Tente novamente.');
+            showToast('Ops! Ocorreu um problema no servidor.');
         }
     } catch (error) {
         showToast('Erro de conexão. Verifique sua internet.');
     } finally {
-        // 3. Restaura o botão
+        // Volta o botão ao estado normal
         submitBtn.innerHTML = originalText;
         submitBtn.disabled = false;
     }
