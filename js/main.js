@@ -202,7 +202,7 @@ function removeOverlay() {
 // ===================================
 async function loadProducts() {
     try {
-        const response = await fetch(`${API_BASE}/api/public/produtos`, {
+        const response = await fetch(`${API_BASE}/api/public/products`, {
             headers: {
     'ngrok-skip-browser-warning': 'true',
     'Accept': 'application/json'
@@ -226,13 +226,13 @@ async function loadPosts() {
     try {
         const response = await fetch('./blog_posts.json');
         const data = await response.json();
-        
+
         if (data && data.data) {
             state.posts = data.data;
             renderBlogPosts();
         }
     } catch (error) {
-        console.warn('Posts ainda locais:', error);
+        console.warn('Posts locais:', error);
         state.posts = [];
     }
 }
