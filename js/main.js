@@ -202,13 +202,7 @@ function removeOverlay() {
 // ===================================
 async function loadProducts() {
     try {
-        const response = await fetch(`${API_BASE}/api/public/products`, {
-            headers: {
-                'ngrok-skip-browser-warning': 'true',
-                'Accept': 'application/json'
-            }
-        });
-
+        const response = await fetch('./products.json');
         const data = await response.json();
 
         if (data && data.data) {
@@ -487,16 +481,20 @@ function addToCart(productId) {
 }
 
 function removeFromCart(productId) {
-// 1. Filtra o array para manter apenas os produtos que NÃO são o ID clicado
-    state.cart = state.cart.filter(item => item.id !== productId);
-    // 2. Salva a nova lista no navegador (LocalStorage)
+    // 1. O SEGREDO ESTÁ AQUI: Converter ambos para String antes de comparar
+    state.cart = state.cart.filter(item => String(item.id) !== String(productId));
+    
+    // 2. Salva a nova lista no navegador
     saveCartToStorage();
-    // 3. Atualiza o contador de itens no ícone da sacola
+    
+    // 3. Atualiza o contador
     updateCartCount();
-    // 4. ATENÇÃO AQUI: Força a atualização visual da página do carrinho
+    
+    // 4. Se estiver na página do carrinho, redesenha a tela para o item sumir na hora
     if (state.currentPage === 'carrinho') {
         renderCart();
     }
+    
     showToast('Produto removido com sucesso! 🗑️');
 }
 
@@ -629,21 +627,42 @@ function loadCartFromStorage() {
 // ===================================
 // Contact Form
 // ===================================
-function handleContactSubmit(e) {
+async function handleContactSubmit(e) {
     e.preventDefault();
     
-    const formData = new FormData(e.target);
-    const data = {
-        name: formData.get('name'),
-        email: formData.get('email'),
-        subject: formData.get('subject'),
-        message: formData.get('message')
-    };
+    const form = e.target;
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
     
-    console.log('Mensagem de contato:', data);
+    // 1. Muda botão para indicar carregamento
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+    submitBtn.disabled = true;
+
+    const formData = new FormData(form);
     
-    showToast('Mensagem enviada com sucesso! Logo entraremos em contato. 💌');
-    e.target.reset();
+    try {
+        // 2. Envia para o Formspree (SUBSTITUA O LINK ABAIXO PELO SEU)
+        const response = await fetch("https://formspree.io/f/xpqrjdge", {
+            method: "POST",
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
+        if (response.ok) {
+            showToast('Mensagem enviada! Logo entraremos em contato. 💌');
+            form.reset();
+        } else {
+            showToast('Ops! Houve um erro ao enviar. Tente novamente.');
+        }
+    } catch (error) {
+        showToast('Erro de conexão. Verifique sua internet.');
+    } finally {
+        // 3. Restaura o botão
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+    }
 }
 
 // ===================================
