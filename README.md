@@ -509,15 +509,15 @@ const state = {
 ## 📞 Contato e Suporte
 
 ### Loja
-- **E-mail**: contato@ninastore.com
-- **WhatsApp**: (11) 99999-9999
+- **E-mail**: 
+- **WhatsApp**: 
 - **Horário**: Segunda a Sexta: 9h às 18h | Sábado: 9h às 14h
 
 ### Redes Sociais
-- Instagram: [@ninastore](https://instagram.com/ninastore)
-- Twitter: [@ninastore](https://twitter.com/ninastore)
-- TikTok: [@ninastore](https://tiktok.com/@ninastore)
-- Pinterest: [Nina's Store](https://pinterest.com/ninastore)
+- Instagram: [@ninastore]( )
+- Twitter: [@ninastore]( )
+- TikTok: [@ninastore]( )
+- Pinterest: [Nina's Store]( )
 
 ---
 
