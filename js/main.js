@@ -1,4 +1,3 @@
-const API_BASE = 'https://tiderode-gwyn-blockish.ngrok-free.dev';
 // ===================================
 // Global State Management
 // ===================================
@@ -118,20 +117,21 @@ function handleRoute() {
 }
 
 function updateActivePage() {
-    // Hide all pages
-    const pages = document.querySelectorAll('.page');
-    pages.forEach(page => page.classList.remove('active'));
+    // 1. Esconde todas as páginas
+    document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+        page.style.display = 'none'; // Garante que a página anterior sumiu
+    });
     
-    // Show current page
+    // 2. Mostra a página atual
     const currentPageEl = document.getElementById(`page-${state.currentPage}`);
     if (currentPageEl) {
         currentPageEl.classList.add('active');
+        currentPageEl.style.display = 'block'; // Força a exibição
         
-        // Load page-specific content
+        // Carrega conteúdos específicos
         if (state.currentPage === 'produto' && state.currentProductId) {
             renderProductDetail(state.currentProductId);
-        } else if (state.currentPage === 'post' && state.currentPostId) {
-            renderPostDetail(state.currentPostId);
         } else if (state.currentPage === 'carrinho') {
             renderCart();
         }
@@ -180,9 +180,8 @@ function removeOverlay() {
 // ===================================
 async function loadProducts() {
     try {
-        const response = await fetch('./products.json');
+        const response = await fetch('products.json'); 
         const data = await response.json();
-
         if (data && data.data) {
             state.products = data.data;
             renderFeaturedProducts();
@@ -190,7 +189,6 @@ async function loadProducts() {
         }
     } catch (error) {
         console.error('Erro ao carregar produtos:', error);
-        state.products = [];
     }
 }
 
