@@ -1,4 +1,4 @@
-const API_BASE = ' https://tiderode-gwyn-blockish.ngrok-free.dev';
+const API_BASE = 'https://tiderode-gwyn-blockish.ngrok-free.dev';
 // ===================================
 // Global State Management
 // ===================================
@@ -204,9 +204,9 @@ async function loadProducts() {
     try {
         const response = await fetch(`${API_BASE}/api/public/products`, {
             headers: {
-    'ngrok-skip-browser-warning': 'true',
-    'Accept': 'application/json'
-}
+                'ngrok-skip-browser-warning': 'true',
+                'Accept': 'application/json'
+            }
         });
 
         const data = await response.json();
