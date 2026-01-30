@@ -325,7 +325,7 @@ function getCategoryName(category) {
 function renderProductDetail(productId) {
     const product = state.products.find(p => String(p.id) === String(productId));
     const container = document.getElementById('productDetail');
-    
+
     if (!product) {
         container.innerHTML = `
             <div class="cart-empty">
@@ -338,7 +338,21 @@ function renderProductDetail(productId) {
         `;
         return;
     }
-    
+
+    // 🔹 CORREÇÃO: transformar features em array
+    let featuresArray = [];
+    if (product.features) {
+        if (typeof product.features === 'string') {
+            try {
+                featuresArray = JSON.parse(product.features);
+            } catch (e) {
+                featuresArray = [product.features];
+            }
+        } else if (Array.isArray(product.features)) {
+            featuresArray = product.features;
+        }
+    }
+
     container.innerHTML = `
         <div class="product-detail-image">
             <i class="${product.icon || 'fas fa-heart'}"></i>
@@ -355,7 +369,7 @@ function renderProductDetail(productId) {
             <div class="product-features">
                 <h3><i class="fas fa-star"></i> Características</h3>
                 <ul>
-                    ${product.features ? product.features.map(f => `
+                    ${featuresArray.length > 0 ? featuresArray.map(f => `
                         <li><i class="fas fa-check-circle"></i> ${f}</li>
                     `).join('') : '<li><i class="fas fa-check-circle"></i> Produto de alta qualidade</li>'}
                 </ul>
