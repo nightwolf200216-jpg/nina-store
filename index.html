@@ -18,83 +18,55 @@
 <body>
     <!-- Header -->
     <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <i class="fas fa-cat"></i>
-                    <span>Cat Nina's Store</span>
-                </div>
-                
-                <nav class="nav-desktop">
-                    <a href="#" class="nav-link active" data-page="home"
-                onclick="navigateTo('home')">
-                     <i class="fas fa-home"></i> Início
-                    </a>
-                    <a href="#" class="nav-link" data-page="produtos" 
-                         onclick="navigateTo('produtos')">
-                          <i class="fas fa-store"></i> Produtos
-                    </a>
-                    <a href="#" class="nav-link" data-page="sobre"
-                         onclick="navigateTo('sobre')">
-                        <i class="fas fa-heart"></i> Sobre
-                    </a>
-                    <a href="#" class="nav-link" data-page="blog"
-                         onclick="navigateTo('blog')">
-                        <i class="fas fa-blog"></i> Blog
-                    </a>
-                    <a href="#" class="nav-link" data-page="contato"
-                         onclick="navigateTo('contato')">
-                        <i class="fas fa-envelope"></i> Contato
-                    </a>
-                </nav>
-                
-                <div class="header-actions">
-                    <button class="cart-btn" id="cartBtn">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="cart-count" id="cartCount">0</span>
-                    </button>
-                    <button class="menu-toggle" id="menuToggle">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </header>
+  <div class="container header-content">
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-        <div class="mobile-menu-header">
-            <div class="logo">
-                <i class="fas fa-cat"></i>
-                <span>Menu</span>
-            </div>
-            <button class="close-menu" id="closeMenu">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <nav class="mobile-nav">
-            <a href="#" class="mobile-nav-link" data-page="home"
-            onclick="navigateTo('home')">
-                <i class="fas fa-home"></i> Início
-                </a>
-            <a href="#" class="mobile-nav-link" data-page="produtos"
-   onclick="navigateTo('produtos')">
-                <i class="fas fa-store"></i> Produtos
-            </a>
-            <a href="#" class="mobile-nav-link" data-page="sobre"
-                         onclick="navigateTo('sobre')">
-                <i class="fas fa-heart"></i> Sobre
-            </a>
-            <a href="#" class="mobile-nav-link" data-page="blog"
-                         onclick="navigateTo('blog')">
-                <i class="fas fa-blog"></i> Blog
-            </a>
-            <a href="#" class="mobile-nav-link" data-page="contato"
-                         onclick="navigateTo('contato')">
-                <i class="fas fa-envelope"></i> Contato
-            </a>
-        </nav>
+    <a href="#" class="logo">
+      <i class="fas fa-heart"></i> Nina Store
+    </a>
+
+    <nav class="nav-desktop">
+      <a class="nav-link" data-page="home" onclick="navigateTo('home')">Home</a>
+      <a class="nav-link" data-page="produtos" onclick="navigateTo('produtos')">Produtos</a>4
+       <a class="nav-link" data-page="sobre" onclick="navigateTo('sobre')">Sobre</a>
+      <a class="nav-link" data-page="blog" onclick="navigateTo('blog')">Blog</a>
+      <a class="nav-link" data-page="contato" onclick="navigateTo('contato')">Contato</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="cart-btn" onclick="navigateTo('carrinho')">
+        <i class="fas fa-shopping-cart"></i>
+        <span id="cartCount" class="cart-count">0</span>
+      </button>
+
+      <!-- 🔥 ESTE BOTÃO PRECISA DO ID -->
+      <button id="menuToggle" class="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </button>
     </div>
+  </div>
+</header>
+
+<!-- 🔥 MENU MOBILE -->
+<nav id="mobileMenu" class="mobile-menu">
+  <div class="mobile-menu-header">
+    <span class="logo">
+      <i class="fas fa-heart"></i> Nina Store
+    </span>
+
+    <!-- 🔥 ESTE BOTÃO PRECISA DO ID -->
+    <button id="closeMenu" class="close-menu">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+
+  <div class="mobile-nav">
+    <a class="mobile-nav-link" data-page="home" onclick="navigateTo('home')">Home</a>
+    <a class="mobile-nav-link" data-page="produtos" onclick="navigateTo('produtos')">Produtos</a>
+    <a class="mobile-nav-link" data-page="sobre" onclick="navigateTo('sobre')">Sobre</a>
+    <a class="mobile-nav-link" data-page="blog" onclick="navigateTo('blog')">Blog</a>
+    <a class="mobile-nav-link" data-page="contato" onclick="navigateTo('contato')">Contato</a>
+  </div>
+</nav>
 
     <!-- Main Content -->
     <main class="main-content" id="mainContent">

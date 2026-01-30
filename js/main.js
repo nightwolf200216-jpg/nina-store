@@ -43,8 +43,28 @@ async function initializeApp() {
 // Event Listeners Setup
 // ===================================
 function setupEventListeners() {
-    // ... outros ouvintes (menu, cart, etc) ...
+// ===============================
+// Mobile Menu Toggle
+// ===============================
+const menuToggle = document.getElementById('menuToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+const closeMenu = document.getElementById('closeMenu');
 
+if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.add('active');
+        createOverlay();
+    });
+}
+
+if (closeMenu && mobileMenu) {
+    closeMenu.addEventListener('click', closeMobileMenu);
+}
+
+// Fecha o menu ao clicar em qualquer link
+document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', closeMobileMenu);
+});
     // Contact form (Já deve estar lá)
     const contactForm = document.getElementById('contactForm');
     if(contactForm) contactForm.addEventListener('submit', handleContactSubmit);
@@ -162,6 +182,8 @@ function closeMobileMenu() {
 }
 
 function createOverlay() {
+    if (document.querySelector('.mobile-menu-overlay')) return;
+
     const overlay = document.createElement('div');
     overlay.className = 'mobile-menu-overlay active';
     overlay.addEventListener('click', closeMobileMenu);
