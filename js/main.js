@@ -487,11 +487,17 @@ function addToCart(productId) {
 }
 
 function removeFromCart(productId) {
+// 1. Filtra o array para manter apenas os produtos que NÃO são o ID clicado
     state.cart = state.cart.filter(item => item.id !== productId);
+    // 2. Salva a nova lista no navegador (LocalStorage)
     saveCartToStorage();
+    // 3. Atualiza o contador de itens no ícone da sacola
     updateCartCount();
-    renderCart();
-    showToast('Item removido do carrinho');
+    // 4. ATENÇÃO AQUI: Força a atualização visual da página do carrinho
+    if (state.currentPage === 'carrinho') {
+        renderCart();
+    }
+    showToast('Produto removido com sucesso! 🗑️');
 }
 
 function updateQuantity(productId, change) {
@@ -596,7 +602,7 @@ function checkout() {
     ).join('%0A');
     
     const total = state.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const whatsappUrl = `https://wa.me/5511999999999?text=Olá! Gostaria de fazer um pedido:%0A%0A${message}%0A%0ATotal: R$ ${total.toFixed(2)}`;
+    const whatsappUrl = `https://wa.me/558585675726?text=Olá! Gostaria de fazer um pedido:%0A%0A${message}%0A%0ATotal: R$ ${total.toFixed(2)}`;
     
     window.open(whatsappUrl, '_blank');
     showToast('Redirecionando para WhatsApp... 💚');
