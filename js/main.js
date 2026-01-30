@@ -202,18 +202,17 @@ function removeOverlay() {
 // ===================================
 async function loadProducts() {
     try {
-        const response = await fetch(`${API_BASE}/api/public/produtos`);
-        const data = await response.json();
-        
-        if (data && data.data) {
-            state.products = data.data.map(p => ({
-                ...p,
-                featured: Boolean(p.featured), // normaliza
-                features: typeof p.features === 'string'
-                    ? JSON.parse(p.features)
-                    : p.features
-            }));
+        const response = await fetch(`${API_BASE}/api/public/produtos`, {
+            headers: {
+    'ngrok-skip-browser-warning': 'true',
+    'Accept': 'application/json'
+}
+        });
 
+        const data = await response.json();
+
+        if (data && data.data) {
+            state.products = data.data;
             renderFeaturedProducts();
             renderAllProducts();
         }
@@ -225,7 +224,7 @@ async function loadProducts() {
 
 async function loadPosts() {
     try {
-        const response = await fetch('api/blog_posts.json');
+        const response = await fetch('./blog_posts.json');
         const data = await response.json();
         
         if (data && data.data) {
@@ -233,7 +232,7 @@ async function loadPosts() {
             renderBlogPosts();
         }
     } catch (error) {
-        console.error('Erro ao carregar posts:', error);
+        console.warn('Posts ainda locais:', error);
         state.posts = [];
     }
 }
