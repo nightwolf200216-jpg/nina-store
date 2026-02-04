@@ -598,7 +598,7 @@ function checkout() {
     ).join('%0A');
     
     const total = state.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const whatsappUrl = `https://wa.me/558585675726?text=Olá! Gostaria de fazer um pedido:%0A%0A${message}%0A%0ATotal: R$ ${total.toFixed(2)}`;
+    const whatsappUrl = `https://wa.me/0000-0000?text=Olá! Gostaria de fazer um pedido:%0A%0A${message}%0A%0ATotal: R$ ${total.toFixed(2)}`;
     
     window.open(whatsappUrl, '_blank');
     showToast('Redirecionando para WhatsApp... 💚');
